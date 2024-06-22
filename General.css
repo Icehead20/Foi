@@ -1,0 +1,79 @@
+body {
+    background-color: #222;
+    color: white;
+}
+a {
+    color: #89A2FF;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.container {
+    text-align: center;
+}
+.title {
+    font-size: 2.5em;
+}
+.intro {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+ul li {
+    margin-bottom: 10px;
+}
+.separator {
+    width: 50%;
+    margin: 0 auto;
+    border-bottom: 1px solid white;
+    margin-bottom: 20px;
+}
+.section-title {
+	color: yellow;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+.button {
+    background-color: #0077cc;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.button:hover {
+    background-color: #0058a3;
+}
+.species-info {
+    width: 48%;
+}
+.species-image {
+    width: 48%;
+    text-align: center;
+    border: 1px solid white;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.species-image img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid white;
+}
+.category {
+    font-weight: bold;
+	color: white;
+}
+.category span {
+    text-decoration: underline;
+	color: yellow;
+}
