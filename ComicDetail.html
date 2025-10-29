@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic Reader</title>
+    <link rel="stylesheet" href="General.css">
+    <style>
+        .comic-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .comic-page img {
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+            border: 1px solid white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .page-number {
+            color: #aaa;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }
+
+        .back-button {
+            background-color: #0077cc;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .back-button:hover {
+            background-color: #005fa3;
+            transform: scale(1.05);
+        }
+
+        .page-selector {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        select {
+            background-color: #333;
+            color: #ffcc00;
+            border: 1px solid #555;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 1em;
+            outline: none;
+        }
+
+        select:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="page-selector">
+            <label for="pageSelect">Go to page:</label>
+            <select id="pageSelect"></select>
+        </div>
+
+        <div class="separator"></div>
+
+        <div id="comicContainer" class="comic-page"></div>
+
+        <div class="separator"></div>
+        <div class="separator"></div>
+
+        <div style="text-align: center;">
+            <button class="back-button" onclick="goBack()">Back to Comics</button>
+        </div>
+
+        <div class="separator"></div>
+    </div>
+
+    <script>
+        const folder = localStorage.getItem("selectedComic");
+        const container = document.getElementById("comicContainer");
+        const select = document.getElementById("pageSelect");
+
+        if (!folder) {
+            window.location.href = "Comics.html";
+        }
+
+        const maxPages = 20;
+        for (let i = 0; i <= maxPages; i++) {
+            const num = i.toString().padStart(2, '0');
+            const img = document.createElement("img");
+            img.src = `Comics/${folder}/${num}.jpg`;
+            img.alt = `Page ${num}`;
+            img.id = `page-${num}`;
+            img.loading = "lazy";
+
+            const label = document.createElement("div");
+            label.className = "page-number";
+            label.textContent = `Page ${num}`;
+
+            img.onerror = () => {
+                img.remove();
+                label.remove();
+            };
+
+            container.appendChild(img);
+            container.appendChild(label);
+
+            const option = document.createElement("option");
+            option.value = num;
+            option.textContent = num;
+            select.appendChild(option);
+        }
+
+        select.value = "00";
+        select.addEventListener("change", () => {
+            const pageNum = select.value;
+            const target = document.getElementById(`page-${pageNum}`);
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
+
+        function goBack() {
+            window.location.href = "Comics.html";
+        }
+    </script>
+</body>
+</html>
